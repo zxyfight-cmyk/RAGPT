@@ -86,7 +86,7 @@ for msg in st.session_state.chat_history:
                 if msg["sources"]["web"]:
                     st.markdown("**🌐 联网来源：**")
                     for s in msg["sources"]["web"]:
-                        st.markdown(f"- {s}")}")
+                        st.markdown(f"- {s}")
 
 # ===== 输入 =====
 question = st.chat_input("请输入你的问题...")
