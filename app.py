@@ -48,7 +48,7 @@ with st.sidebar:
 
     st.markdown("### 🔍 检索参数")
     top_k = st.slider("召回数量", 1, 10, 3)
-    score_threshold = st.slider("相似度阈值", 0.0, 1.0, 0.3)
+    score_threshold = st.slider("相似度阈值", 0.0, 1.0, 0.5)
 
     st.markdown("### 🌐 联网搜索")
     use_search = st.toggle("启用联网搜索", value=False)
