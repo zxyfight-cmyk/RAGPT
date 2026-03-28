@@ -59,7 +59,7 @@ if not st.session_state.chat_history:
     st.markdown("""
     ### 💡 使用提示（建议先试试这些问题）：
 
-    - 🤖 你是谁？
+    - 🔍 你是谁？
     - 🧠 你能做什么？
     - ⚔️ 你和 ChatGPT 有什么区别？
 
