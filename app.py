@@ -75,7 +75,8 @@ for msg in st.session_state.chat_history:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
-        if "sources" in msg:
+        # ✅ 只有有真实来源才显示
+        if "sources" in msg and (msg["sources"]["local"] or msg["sources"]["web"]):
             with st.expander("📚 查看来源"):
                 if msg["sources"]["local"]:
                     st.markdown("**📄 本地知识库：**")
@@ -85,7 +86,7 @@ for msg in st.session_state.chat_history:
                 if msg["sources"]["web"]:
                     st.markdown("**🌐 联网来源：**")
                     for s in msg["sources"]["web"]:
-                        st.markdown(f"- {s}")
+                        st.markdown(f"- {s}")}")
 
 # ===== 输入 =====
 question = st.chat_input("请输入你的问题...")
