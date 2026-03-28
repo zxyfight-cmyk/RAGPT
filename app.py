@@ -90,38 +90,41 @@ for msg in st.session_state.chat_history:
 # ===== 输入 =====
 question = st.chat_input("请输入你的问题...")
 
-if question and username.strip():
-    st.session_state.chat_history.append({
-        "role": "user",
-        "content": question
-    })
+if question:
+    if not username.strip():
+        st.warning("⚠️ 请输入用户名后再提问")
+    else:
+        st.session_state.chat_history.append({
+            "role": "user",
+            "content": question
+        })
 
-    with st.chat_message("user"):
-        st.markdown(question)
+        with st.chat_message("user"):
+            st.markdown(question)
 
-    with st.spinner("思考中..."):
-        answer, sources, _ = generate_answer(
-            question=question,
-            username=username,
-            use_external_search=use_search,
-            similarity_threshold=score_threshold,
-            top_k=top_k,
-            chat_history=st.session_state.chat_history
-        )
+        with st.spinner("思考中..."):
+            answer, sources, _ = generate_answer(
+                question=question,
+                username=username,
+                use_external_search=use_search,
+                similarity_threshold=score_threshold,
+                top_k=top_k,
+                chat_history=st.session_state.chat_history
+            )
 
-        with st.chat_message("assistant"):
-            st.markdown(answer)
+            with st.chat_message("assistant"):
+                st.markdown(answer)
 
-            with st.expander("📚 数据来源"):
-                if sources["local"]:
-                    st.markdown("**📄 本地知识库：**")
-                    for s in sources["local"]:
-                        st.markdown(f"- {s}")
+                with st.expander("📚 数据来源"):
+                    if sources["local"]:
+                        st.markdown("**📄 本地知识库：**")
+                        for s in sources["local"]:
+                            st.markdown(f"- {s}")
 
-                if sources["web"]:
-                    st.markdown("**🌐 联网来源：**")
-                    for s in sources["web"]:
-                        st.markdown(f"- {s}")
+                    if sources["web"]:
+                        st.markdown("**🌐 联网来源：**")
+                        for s in sources["web"]:
+                            st.markdown(f"- {s}")
 
         st.session_state.chat_history.append({
             "role": "assistant",
