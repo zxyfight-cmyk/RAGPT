@@ -4,7 +4,11 @@ from src.llm import get_llm
 from src.baidu_search import baidu_web_search
 
 def generate_answer(question, username, use_external_search=False, similarity_threshold=0.2, top_k=3, chat_history=None):
-
+    # ===== 0. 系统类问题拦截（新增）=====
+    intro_answer = get_system_intro(question)
+    if intro_answer:
+        return intro_answer, {"local": [], "web": []}, None    
+    
     # ===== 1. 本地检索 =====
     local_data = retrieve_context(question, username, similarity_threshold, top_k)
 
