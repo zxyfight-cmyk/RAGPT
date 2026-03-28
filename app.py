@@ -94,14 +94,17 @@ if question:
     if not username.strip():
         st.warning("⚠️ 请输入用户名后再提问")
     else:
+        # ===== 记录用户问题 =====
         st.session_state.chat_history.append({
             "role": "user",
             "content": question
         })
 
+        # ===== 显示用户问题 =====
         with st.chat_message("user"):
             st.markdown(question)
 
+        # ===== 调用RAG =====
         with st.spinner("思考中..."):
             answer, sources, _ = generate_answer(
                 question=question,
@@ -112,9 +115,12 @@ if question:
                 chat_history=st.session_state.chat_history
             )
 
-            with st.chat_message("assistant"):
-                st.markdown(answer)
+        # ===== 显示回答 =====
+        with st.chat_message("assistant"):
+            st.markdown(answer)
 
+            # ✅ 关键优化：只有有来源才显示
+            if sources["local"] or sources["web"]:
                 with st.expander("📚 数据来源"):
                     if sources["local"]:
                         st.markdown("**📄 本地知识库：**")
@@ -126,6 +132,7 @@ if question:
                         for s in sources["web"]:
                             st.markdown(f"- {s}")
 
+        # ===== 保存AI回复 =====
         st.session_state.chat_history.append({
             "role": "assistant",
             "content": answer,
