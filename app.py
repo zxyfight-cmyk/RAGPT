@@ -90,7 +90,7 @@ for msg in st.session_state.chat_history:
 # ===== 输入 =====
 question = st.chat_input("请输入你的问题...")
 
-if question and username:
+if question and username.strip():
     st.session_state.chat_history.append({
         "role": "user",
         "content": question
