@@ -19,7 +19,7 @@ BAIDU_API_KEY = os.getenv("BAIDU_API_KEY")
 
 # 默认检索参数
 RETRIEVE_TOP_K = 3
-RETRIEVE_SCORE_THRESHOLD = 0.2
+RETRIEVE_SCORE_THRESHOLD = 0.5
 
 # 自动生成用户专属路径
 def get_user_dirs(username):
