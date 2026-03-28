@@ -1,3 +1,4 @@
+from src.assistant_identity import get_system_intro
 from src.retrieve import retrieve_context
 from src.llm import get_llm
 from src.baidu_search import baidu_web_search
