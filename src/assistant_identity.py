@@ -57,7 +57,6 @@ def get_system_intro(question: str) -> str | None:
 ## 📌 适用场景
 
 - 企业知识库问答
-- 面试项目展示
 - 文档总结与分析
 """
 
