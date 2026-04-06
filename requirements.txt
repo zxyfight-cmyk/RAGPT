@@ -1,8 +1,6 @@
-streamlit==1.32.0
-sentence-transformers==2.2.2
-chromadb==0.4.22
-pydantic==1.10.13
-protobuf==3.20.3
+streamlit
+sentence-transformers
+chromadb==0.4.24
 zhipuai
 python-dotenv
 pypdf
@@ -12,3 +10,9 @@ tqdm
 langchain-text-splitters
 requests
 sniffio
+
+numpy==1.26.4          # 保留 np.float_，彻底解决numpy报错
+protobuf==4.25.3
+opentelemetry-api==1.24.0
+opentelemetry-sdk==1.24.0
+opentelemetry-exporter-otlp==1.24.0
