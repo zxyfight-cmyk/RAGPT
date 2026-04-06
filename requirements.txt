@@ -1,6 +1,7 @@
-﻿streamlit
+streamlit
 sentence-transformers
-chromadb
+chromadb==0.4.24
+protobuf==3.20.3
 zhipuai
 python-dotenv
 pypdf
